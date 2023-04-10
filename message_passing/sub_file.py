@@ -1,16 +1,21 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
+# sub_file.py
+# Author: Jenish patel
+
 import zmq
 import numpy as np
 import time
 import pmt
-import json
 
 context = zmq.Context()
 socket = context.socket(zmq.SUB)
 socket.connect("tcp://127.0.0.1:55555") # connect, not bind, the PUB will bind, only 1 can bind
 socket.setsockopt(zmq.SUBSCRIBE, b'') # subscribe to topic of all (needed or else it won't work)
+
+with open("small_rx_file.txt",'w') as file:
+    pass
 
 while True:
     if socket.poll(10) != 0: # check if there is a message on the socket
@@ -23,8 +28,12 @@ while True:
             recv_pmt_msg = socket.recv() # grab the message
             arr.append(chr(list(recv_pmt_msg)[4]))
 
-        msg = ''.join(arr)
-        print(msg)
-        data = json.loads(msg)
+        new_arr = arr[2:-1]
+        msg = ''.join(new_arr)
+        
+        # Write message to file
+        f = open("small_rx_file.txt", "a")
+        f.write(msg)
+        f.close()
     else:
         time.sleep(0.1) # wait 100ms and try again

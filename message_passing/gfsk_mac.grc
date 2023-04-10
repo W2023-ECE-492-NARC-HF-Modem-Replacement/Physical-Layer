@@ -85,7 +85,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '256'
+    value: '100'
   states:
     bus_sink: false
     bus_source: false
@@ -143,7 +143,7 @@ blocks:
     bus_structure: null
     coordinate: [1864, 100.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: audio_source_0
   id: audio_source
   parameters:
@@ -162,7 +162,7 @@ blocks:
     bus_structure: null
     coordinate: [24, 340.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: blocks_complex_to_float_0
   id: blocks_complex_to_float
   parameters:
@@ -178,7 +178,7 @@ blocks:
     bus_structure: null
     coordinate: [1640, 160.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: blocks_float_to_complex_0
   id: blocks_float_to_complex
   parameters:
@@ -194,7 +194,7 @@ blocks:
     bus_structure: null
     coordinate: [224, 344.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: blocks_message_debug_0
   id: blocks_message_debug
   parameters:
@@ -217,7 +217,7 @@ blocks:
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
-    msg: ' pmt.cons(pmt.PMT_NIL, pmt.init_u8vector(10, (1,2,3,4,5,6,7,8,9,10)))'
+    msg: ' pmt.cons(pmt.PMT_NIL, pmt.init_u8vector(1, 0x34))'
     period: '100'
   states:
     bus_sink: false
@@ -225,7 +225,7 @@ blocks:
     bus_structure: null
     coordinate: [64, 252.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: blocks_multiply_const_vxx_0
   id: blocks_multiply_const_vxx
   parameters:
@@ -243,7 +243,7 @@ blocks:
     bus_structure: null
     coordinate: [984, 444.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: blocks_pdu_to_tagged_stream_0
   id: blocks_pdu_to_tagged_stream
   parameters:
@@ -312,7 +312,7 @@ blocks:
     bus_structure: null
     coordinate: [696, 488.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: blocks_uchar_to_float_0_0
   id: blocks_uchar_to_float
   parameters:
@@ -360,7 +360,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [672, 340.0]
+    coordinate: [688, 340.0]
     rotation: 0
     state: true
 - name: digital_crc32_async_bb_0_0
@@ -376,7 +376,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1696, 356.0]
+    coordinate: [1712, 356.0]
     rotation: 0
     state: bypassed
 - name: digital_crc32_async_bb_1
@@ -451,8 +451,8 @@ blocks:
       \ self.handle_msg)\n\n    def handle_msg(self, msg):\n        inMsg = pmt.to_python\
       \ (msg)\n        pld = inMsg[1]\n        # print (pld)\n        mLen = len(pld)\n\
       \        # print (mLen)\n        if (mLen > 0):\n            # 10 preamble bytes,\
-      \ 4 access code bytes\n            char_list = [85,85,85,85,85,85,85,85,85,85,255,0,255,0]\n\
-      \            char_list.append (mLen >> 8)\n            char_list.append (mLen\
+      \ 4 access code bytes\n            char_list = [85,85,85,85,255,0,255,0]\n \
+      \           char_list.append (mLen >> 8)\n            char_list.append (mLen\
       \ & 255)\n            char_list.append (mLen >> 8)\n            char_list.append\
       \ (mLen & 255)\n            char_list.extend (pld)\n            # print (char_list)\n\
       \            out_len = len(char_list)\n            # print (out_len)\n     \
@@ -489,8 +489,7 @@ blocks:
       \ is registered (properties work, too).\n        self.message_port_register_in(pmt.intern('MSG_in'))\n\
       \        self.message_port_register_out(pmt.intern('PDU_out'))\n        self.set_msg_handler(pmt.intern('MSG_in'),\
       \ self.handle_msg)\n\n    def handle_msg(self, msg):\n        inMsg = pmt.to_python(msg)\n\
-      \        outMsg = inMsg\n        \n        #outMsg = \"hello\"\n        #outMsgChr\
-      \ = [ord(x) for x in outMsg]\n        \n        self.message_port_pub(pmt.intern('PDU_out'),\
+      \        outMsg = inMsg\n        \n        self.message_port_pub(pmt.intern('PDU_out'),\
       \ pmt.cons(pmt.PMT_NIL,pmt.init_u8vector(1, outMsg)))\n\n        \n        \n"
     affinity: ''
     alias: ''
@@ -505,7 +504,7 @@ blocks:
     bus_structure: null
     coordinate: [312, 176.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: epy_block_1_0
   id: epy_block
   parameters:
@@ -557,7 +556,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1480, 348.0]
+    coordinate: [1472, 348.0]
     rotation: 0
     state: bypassed
 - name: fec_async_encoder_0
@@ -660,7 +659,7 @@ blocks:
     bus_structure: null
     coordinate: [2016, 108.0]
     rotation: 0
-    state: true
+    state: disabled
 - name: qtgui_time_sink_x_0_0
   id: qtgui_time_sink_x
   parameters:
@@ -718,7 +717,7 @@ blocks:
     nconnections: '2'
     size: '1024'
     srate: samp_rate
-    stemplot: 'True'
+    stemplot: 'False'
     style1: '1'
     style10: '1'
     style2: '1'
@@ -757,7 +756,7 @@ blocks:
     bus_structure: null
     coordinate: [1688, 20.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: qtgui_time_sink_x_2
   id: qtgui_time_sink_x
   parameters:
@@ -854,7 +853,7 @@ blocks:
     bus_structure: null
     coordinate: [1248, 452.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: zeromq_pub_msg_sink_0
   id: zeromq_pub_msg_sink
   parameters:
@@ -874,7 +873,7 @@ blocks:
 - name: zeromq_sub_msg_source_0
   id: zeromq_sub_msg_source
   parameters:
-    address: tcp://127.0.0.1:55557
+    address: tcp://127.0.0.1:55550
     affinity: ''
     alias: ''
     bind: 'False'
@@ -888,7 +887,7 @@ blocks:
     bus_structure: null
     coordinate: [16, 164.0]
     rotation: 0
-    state: disabled
+    state: enabled
 
 connections:
 - [audio_source_0, '0', blocks_float_to_complex_0, '0']
@@ -913,6 +912,7 @@ connections:
 - [digital_gfsk_demod_0, '0', blocks_uchar_to_float_0, '0']
 - [digital_gfsk_demod_0, '0', digital_correlate_access_code_xx_ts_0, '0']
 - [digital_gfsk_mod_0, '0', blocks_complex_to_float_0, '0']
+- [digital_gfsk_mod_0, '0', digital_gfsk_demod_0, '0']
 - [epy_block_0, PDU_out, fec_async_encoder_0, in]
 - [epy_block_1, PDU_out, digital_crc32_async_bb_1, in]
 - [epy_block_1_0, MSG_out, blocks_message_debug_0, print]

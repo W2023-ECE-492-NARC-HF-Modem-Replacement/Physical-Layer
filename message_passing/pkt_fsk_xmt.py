@@ -82,7 +82,7 @@ class pkt_fsk_xmt(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.spsym = spsym = 256
+        self.spsym = spsym = 100
         self.fsk_dev = fsk_dev = 4800
         self.baud_bit = baud_bit = 19200
         self.variable_repetition_encoder_def_0 = variable_repetition_encoder_def_0 = fec.repetition_encoder_make(2048, 3)
@@ -160,7 +160,7 @@ class pkt_fsk_xmt(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_0_0.enable_grid(False)
         self.qtgui_time_sink_x_0_0.enable_axis_labels(True)
         self.qtgui_time_sink_x_0_0.enable_control_panel(True)
-        self.qtgui_time_sink_x_0_0.enable_stem_plot(True)
+        self.qtgui_time_sink_x_0_0.enable_stem_plot(False)
 
 
         labels = ['Signal 1', 'Signal 2', 'Signal 3', 'Signal 4', 'Signal 5',
